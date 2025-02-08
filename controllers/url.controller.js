@@ -17,9 +17,11 @@ export async function handleGenerateNewShortURL(req, res) {
             redirectURL: body.url,
             visitHistory: [],
         });
-
+        return res.render("home" ,{
+            id:shortID,
+        });
         // console.log("Short URL generated:", shortID);
-        return res.json({ id: shortID });
+        // return res.json({ id: shortID });
     } catch (err) {
         console.error("Error in controller:", err);
         res.status(500).json({ error: "Internal Server Error" });

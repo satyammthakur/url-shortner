@@ -10,7 +10,7 @@ import staticRouter from "./routes/static.route.js";
 dotenv.config();
 const app = express();
 app.use(express.json()); 
-
+app.use(express.urlencoded({extended: false}));
 app.use("/url", urlRoute);
 app.use("/" , staticRouter);
 
@@ -22,12 +22,12 @@ app.set("view engine" , "ejs" );
 app.set('views' , path.resolve("./views"));
 
 
-app.get("/test" , async (req,res)=>{    
-    const allURLs = await URL.find({});
-    return res.render("home" , {
-        urls: allURLs,
-    });
-})
+// app.get("/test" , async (req,res)=>{    
+//     const allURLs = await URL.find({});
+//     return res.render("home" , {
+//         urls: allURLs,
+//     });
+// })
 app.get('/:shortId' , async (req,res)=>{
     const shortId = req.params.shortId;
     const entry = await URL.findOneAndUpdate({
