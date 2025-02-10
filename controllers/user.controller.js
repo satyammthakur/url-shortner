@@ -1,5 +1,7 @@
 import {v4 as uuidv4} from "uuid";
 import User from "../models/user.model.js"
+import { setUser } from "../service/auth.service.js";
+
 
 export async function handleUserSignup(req , res) {
     const { name , email , password} = req.body;
@@ -21,7 +23,9 @@ export async function handleUserLogin(req , res) {
             error : "Invalid username or password",
         })
     }
-    const seesionId = uuidv4();
+    const sessionId = uuidv4();
+    setUser(sessionId , user);
+    res.cookie("uid" , sessionId);
     return res.redirect("/");
 }
 

@@ -3,10 +3,11 @@ import dotenv from "dotenv";
 import path from "path";
 import { connectToMongoDB } from "./connect.js";
 import URL from "./models/url.model.js";
-
+import cookieParser from "cookie-parser";
 import urlRoute from "./routes/url.route.js";
 import userRoute from "./routes/user.route.js";
 import staticRouter from "./routes/static.route.js";
+import { restrictToLoggedInUserOnly } from "./middlewares/auth.middleware.js";
 
 
 dotenv.config();
@@ -17,9 +18,9 @@ app.set('views' , path.resolve("./views"));
 
 app.use(express.json()); 
 app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
 
-
-app.use("/url", urlRoute);
+app.use("/url", restrictToLoggedInUserOnly, urlRoute);
 app.use("/user" , userRoute );
 app.use("/" , staticRouter);
 
