@@ -103,11 +103,11 @@ url-shortener/
 4. Push to the branch (`git push origin feature/improvement`)
 5. Create a Pull Request
 
-## License
+<!-- ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://choosealicense.com/licenses/mit/) -->
 
 ## Contact
 
-Your Name - [Your Email]
-Project Link: [Your Repository URL]
+satyam thakur - satyammthakur@gmail.com
+Project Link: https://github.com/satyammthakur/url-shortner
