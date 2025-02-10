@@ -1,17 +1,20 @@
 import express from "express";
-// import urlRoute from "./routes/url.route.js";
 import dotenv from "dotenv";
 import path from "path";
 import { connectToMongoDB } from "./connect.js";
-// import URL from "../models/url.model.js";
 import URL from "./models/url.model.js";
+
 import urlRoute from "./routes/url.route.js";
+import userRoute from "./routes/user.route.js";
 import staticRouter from "./routes/static.route.js";
+
+
 dotenv.config();
 const app = express();
 app.use(express.json()); 
 app.use(express.urlencoded({extended: false}));
 app.use("/url", urlRoute);
+app.use("/user" , userRoute );
 app.use("/" , staticRouter);
 
 const PORT = 8001;
