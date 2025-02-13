@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import urlRoute from "./routes/url.route.js";
 import userRoute from "./routes/user.route.js";
 import staticRouter from "./routes/static.route.js";
-import { restrictToLoggedInUserOnly } from "./middlewares/auth.middleware.js";
+import { restrictToLoggedInUserOnly , checkAuth } from "./middlewares/auth.middleware.js";
 
 
 dotenv.config();
@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 app.use("/url", restrictToLoggedInUserOnly, urlRoute);
 app.use("/user" , userRoute );
-app.use("/" , staticRouter);
+app.use("/" , checkAuth , staticRouter);
 
 const PORT = 8001;
 
